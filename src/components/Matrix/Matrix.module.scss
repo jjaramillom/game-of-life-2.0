@@ -1,0 +1,11 @@
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+  border-style: solid;
+}

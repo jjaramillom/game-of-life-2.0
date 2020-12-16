@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
-import { boardContext } from '../../state/CellThemeProvider';
+import { boardEventsContext } from '../../state/BoardEventsProvider';
+import { cellThemeContext } from '../../state/CellThemeProvider';
 import classes from './Cell.module.scss';
 
 interface Props {
@@ -21,16 +22,50 @@ const createStyles = ({ cellBorderColor, cellColor }: CellTheme): React.CSSPrope
   };
 };
 
-const Cell = (props: Props) => {
-  const { filled } = props;
-  const { cellBorderColor, cellColor, cellFilledColor } = useContext(boardContext);
+const Cell = ({ filled: filledInitialState }: Props) => {
+  const [filled, setFilled] = useState(filledInitialState);
+  const [clicking, setClicking] = useState(false);
+
+  const { cellBorderColor, cellColor, cellFilledColor } = useContext(cellThemeContext);
+  const { selecting, setSelecting } = useContext(boardEventsContext);
+
+  const handleHover = () => {
+    if (selecting) {
+      setFilled(true);
+    }
+  };
+
+  const handleMouseDown = () => {
+    if (!filled) {
+      setClicking(true);
+    }
+    setFilled(!filled);
+  };
+
+  const handleMouseLeave = () => {
+    if (clicking) {
+      setSelecting(true);
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (selecting) {
+      setSelecting(false);
+    }
+  };
+
   return (
     <div
       className={classes.cell}
       style={createStyles({
         cellBorderColor,
         cellColor: filled ? cellFilledColor : cellColor,
-      })}></div>
+      })}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseOver={handleHover}
+      onMouseLeave={handleMouseLeave}
+    />
   );
 };
 

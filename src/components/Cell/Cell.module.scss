@@ -1,7 +1,9 @@
-$cell-side: 5px;
+$cell-side: 10px;
 
 .cell {
   width: $cell-side;
+  height: $cell-side;
   border-width: 1px;
   border-style: solid;
+  cursor: pointer;
 }

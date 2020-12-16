@@ -42,5 +42,5 @@ const CellThemeProvider = ({ children }: Props) => {
   );
 };
 
-export { cellThemeContext as boardContext };
+export { cellThemeContext };
 export default CellThemeProvider;
