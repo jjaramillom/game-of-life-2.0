@@ -27,30 +27,36 @@ const Cell = ({ filled: filledInitialState }: Props) => {
   const [clicking, setClicking] = useState(false);
 
   const { cellBorderColor, cellColor, cellFilledColor } = useContext(cellThemeContext);
-  const { selecting, setSelecting } = useContext(boardEventsContext);
+  const { filling, setFilling, clearing, setClearing } = useContext(boardEventsContext);
 
   const handleHover = () => {
-    if (selecting) {
+    if (filling) {
       setFilled(true);
+    } else if (clearing) {
+      setFilled(false);
     }
   };
 
   const handleMouseDown = () => {
-    if (!filled) {
-      setClicking(true);
-    }
+    setClicking(true);
     setFilled(!filled);
   };
 
   const handleMouseLeave = () => {
     if (clicking) {
-      setSelecting(true);
+      if (filled) {
+        setFilling(true);
+      } else {
+        setClearing(true);
+      }
     }
   };
 
   const handleMouseUp = () => {
-    if (selecting) {
-      setSelecting(false);
+    if (filling) {
+      setFilling(false);
+    } else if (clearing) {
+      setClearing(false);
     }
   };
 

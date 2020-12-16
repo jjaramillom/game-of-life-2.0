@@ -1,13 +1,17 @@
 import React, { createContext, useState } from 'react';
 
 interface BoardEventsContext {
-  selecting: boolean;
-  setSelecting: (value: boolean) => void;
+  filling: boolean;
+  setFilling: (value: boolean) => void;
+  clearing: boolean;
+  setClearing: (value: boolean) => void;
 }
 
 const boardEventsContext = createContext<BoardEventsContext>({
-  selecting: false,
-  setSelecting: (value: boolean) => {},
+  filling: false,
+  setFilling: (value: boolean) => {},
+  clearing: false,
+  setClearing: (value: boolean) => {},
 });
 
 type Props = {
@@ -15,13 +19,16 @@ type Props = {
 };
 
 const BoardEventsProvider = ({ children }: Props) => {
-  const [selecting, setSelecting] = useState(false);
+  const [filling, setFilling] = useState(false);
+  const [clearing, setClearing] = useState(false);
 
   return (
     <boardEventsContext.Provider
       value={{
-        selecting,
-        setSelecting,
+        filling,
+        setFilling,
+        clearing,
+        setClearing,
       }}>
       {children}
     </boardEventsContext.Provider>
