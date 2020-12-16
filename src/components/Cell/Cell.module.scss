@@ -1,0 +1,7 @@
+$cell-side: 5px;
+
+.cell {
+  width: $cell-side;
+  border-width: 1px;
+  border-style: solid;
+}
