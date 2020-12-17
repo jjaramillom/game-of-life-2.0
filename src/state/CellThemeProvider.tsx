@@ -19,7 +19,7 @@ const cellThemeContext = createContext<CellThemeContext>({
 });
 
 type Props = {
-  children?: JSX.Element | JSX.Element[];
+  children?: React.ReactNode;
 };
 
 const CellThemeProvider = ({ children }: Props) => {

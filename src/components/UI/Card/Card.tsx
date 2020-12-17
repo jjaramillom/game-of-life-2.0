@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './Card.module.scss';
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   style?: React.CSSProperties;
 }
 const Card = ({ children, style }: Props) => {

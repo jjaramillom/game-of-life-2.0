@@ -15,7 +15,7 @@ const boardEventsContext = createContext<BoardEventsContext>({
 });
 
 type Props = {
-  children?: JSX.Element | JSX.Element[];
+  children?: React.ReactNode;
 };
 
 const BoardEventsProvider = ({ children }: Props) => {

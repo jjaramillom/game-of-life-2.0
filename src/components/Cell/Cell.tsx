@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import { boardEventsContext } from '../../state/BoardEventsProvider';
 import { cellThemeContext } from '../../state/CellThemeProvider';
+import { matrixStateContext } from '../../state/MatrixStateProvider';
 import classes from './Cell.module.scss';
 
 interface Props {
@@ -22,24 +23,30 @@ const createStyles = ({ cellBorderColor, cellColor }: CellTheme): React.CSSPrope
   };
 };
 
-const Cell = ({ filled: filledInitialState }: Props) => {
+const Cell = ({ filled: filledInitialState, x, y }: Props) => {
   const [filled, setFilled] = useState(filledInitialState);
   const [clicking, setClicking] = useState(false);
 
   const { cellBorderColor, cellColor, cellFilledColor } = useContext(cellThemeContext);
   const { filling, setFilling, clearing, setClearing } = useContext(boardEventsContext);
+  const { setCellValue, getCellValue } = useContext(matrixStateContext);
 
   const handleHover = () => {
-    if (filling) {
-      setFilled(true);
-    } else if (clearing) {
-      setFilled(false);
+    if (!filled && filling) {
+      updateFillValue(true);
+    } else if (filled && clearing) {
+      updateFillValue(false);
     }
+  };
+
+  const updateFillValue = (value: boolean) => {
+    setCellValue({ x, y }, value);
+    setFilled(value);
   };
 
   const handleMouseDown = () => {
     setClicking(true);
-    setFilled(!filled);
+    updateFillValue(!filled);
   };
 
   const handleMouseLeave = () => {
@@ -49,10 +56,12 @@ const Cell = ({ filled: filledInitialState }: Props) => {
       } else {
         setClearing(true);
       }
+      setClicking(false);
     }
   };
 
   const handleMouseUp = () => {
+    setClicking(false);
     if (filling) {
       setFilling(false);
     } else if (clearing) {
@@ -60,8 +69,17 @@ const Cell = ({ filled: filledInitialState }: Props) => {
     }
   };
 
+  const cellValueState = getCellValue({ x, y });
+
+  useEffect(() => {
+    if (cellValueState !== undefined && cellValueState !== filled) {
+      setFilled(cellValueState);
+    }
+  }, [cellValueState]);
+
   return (
     <div
+      test-id='cell'
       className={classes.cell}
       style={createStyles({
         cellBorderColor,
