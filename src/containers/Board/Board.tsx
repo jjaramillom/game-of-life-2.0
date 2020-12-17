@@ -5,8 +5,8 @@ import Matrix from '../../components/Matrix/Matrix';
 import Card from '../../components/UI/Card/Card';
 import classes from './Board.module.scss';
 
-const COLUMNS = 5;
-const ROWS = 5;
+const COLUMNS = 15;
+const ROWS = 15;
 
 const Board = () => {
   return (

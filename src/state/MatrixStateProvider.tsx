@@ -1,24 +1,27 @@
 import React, { createContext, useState } from 'react';
 import cloneDeep from 'lodash/cloneDeep';
+import matches from 'lodash/matches';
 
 import { shouldLive, getRandomBool } from './helpers';
 
 interface MatrixStateContext {
   matrix: Matrix;
   setMatrix: (newMatrix: Matrix) => void;
-  updateMatrix: () => void;
+  updateMatrix: (shouldvalidateSteadyState: boolean) => void;
   setCellValue: (coordinate: Coordinate, value: boolean) => void;
   getCellValue: (coordinate: Coordinate) => boolean | undefined;
   randomizeMatrix: () => void;
+  steadyState: boolean;
 }
 
 const matrixStateContext = createContext<MatrixStateContext>({
   matrix: [[]],
   setMatrix: (newMatrix) => {},
-  updateMatrix: () => {},
+  updateMatrix: (shouldvalidateSteadyState: boolean) => {},
   setCellValue: (coordinate, value) => {},
   getCellValue: (coordinate) => undefined,
   randomizeMatrix: () => {},
+  steadyState: false,
 });
 
 type Props = {
@@ -27,6 +30,7 @@ type Props = {
 
 const MatrixStateProvider = ({ children }: Props) => {
   const [matrix, setMatrix] = useState<Matrix>([[]]);
+  const [steadyState, setSteadyState] = useState(false);
 
   const setCellValue = ({ x, y }: Coordinate, value: boolean) => {
     matrix[y][x].isAlive = value;
@@ -37,17 +41,33 @@ const MatrixStateProvider = ({ children }: Props) => {
     return matrix[y]?.[x]?.isAlive;
   };
 
-  const updateMatrix = () => {
-    const matrixClone = matrix.map((row) =>
+  const updateMatrix = (shouldvalidateSteadyState: boolean) => {
+    if (steadyState) {
+      return;
+    }
+    const updatedMatrix = matrix.map((row) =>
       row.map((cell) => ({ ...cell, isAlive: shouldLive(cell, matrix) }))
     );
-    setMatrix(matrixClone);
+
+    if (shouldvalidateSteadyState) {
+      validateSteadyState(matrix, updatedMatrix);
+    }
+
+    setMatrix(updatedMatrix);
+  };
+
+  const validateSteadyState = (oldMatrix: Matrix, newMatrix: Matrix) => {
+    const compare = matches(oldMatrix);
+    if (compare(newMatrix)) {
+      setSteadyState(true);
+    }
   };
 
   const randomizeMatrix = () => {
     const matrixClone = cloneDeep(matrix);
     matrixClone.forEach((row) => row.forEach((cell) => (cell.isAlive = getRandomBool())));
     setMatrix(matrixClone);
+    setSteadyState(false);
   };
 
   return (
@@ -59,6 +79,7 @@ const MatrixStateProvider = ({ children }: Props) => {
         setCellValue,
         getCellValue,
         randomizeMatrix,
+        steadyState,
       }}>
       {children}
     </matrixStateContext.Provider>

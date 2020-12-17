@@ -4,6 +4,7 @@
   min-width: fit-content;
   border: none;
   padding: 3px 32px;
+  margin: 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -11,4 +12,10 @@
   outline: none;
   box-shadow: none;
   font-weight: bold;
+}
+
+.disabled {
+  cursor: auto !important;
+  background-color: lightgray !important;
+  color: gray !important;
 }

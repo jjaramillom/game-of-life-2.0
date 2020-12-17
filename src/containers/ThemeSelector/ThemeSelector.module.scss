@@ -1,0 +1,36 @@
+$icon-diameter: 24px;
+$inner-diameter: 14px;
+$translation: ($icon-diameter - $inner-diameter) / 2;
+
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.theme_option {
+  display: flex;
+  flex-direction: column;
+  border-right: solid 1px #ccc;
+  padding: 8px;
+  align-items: center;
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.theme_selector {
+  width: $icon-diameter;
+  height: $icon-diameter;
+  background-color: red;
+  border-radius: 50%;
+  cursor: pointer;
+  & > div {
+    content: '';
+    position: absolute;
+    transform: translate($translation, $translation);
+    width: $inner-diameter;
+    height: $inner-diameter;
+    background-color: white;
+    border-radius: 50%;
+  }
+}
