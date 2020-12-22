@@ -1,0 +1,30 @@
+$icon-side: 16px;
+$border-width: 4px;
+$inner-width: 33px;
+
+.theme_selector {
+  position: relative;
+  width: $icon-side;
+  height: $icon-side;
+  cursor: pointer;
+  background-color: white;
+  border-style: solid;
+  border-width: $border-width;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: $inner-width;
+    width: 17px;
+    transform: rotate(45deg) translate(-15px, -5px);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: $inner-width;
+    width: 17px;
+    transform: rotate(45deg) translate(2px, -5px);
+  }
+}

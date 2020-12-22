@@ -1,7 +1,3 @@
-$icon-diameter: 24px;
-$inner-diameter: 14px;
-$translation: ($icon-diameter - $inner-diameter) / 2;
-
 .main {
   display: flex;
   flex-direction: row;
@@ -18,19 +14,12 @@ $translation: ($icon-diameter - $inner-diameter) / 2;
   }
 }
 
-.theme_selector {
-  width: $icon-diameter;
-  height: $icon-diameter;
-  background-color: red;
-  border-radius: 50%;
-  cursor: pointer;
-  & > div {
-    content: '';
-    position: absolute;
-    transform: translate($translation, $translation);
-    width: $inner-diameter;
-    height: $inner-diameter;
-    background-color: white;
-    border-radius: 50%;
-  }
+.theme_modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.icon_wrapper {
+  padding: 5px;
 }

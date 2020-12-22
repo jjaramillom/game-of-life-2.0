@@ -1,5 +1,23 @@
 import React, { createContext, useState } from 'react';
 
+export const themeMap = {
+  default: {
+    cell: '#18ab',
+    filledCell: '#afcc',
+    border: '#0a0a0a',
+  },
+  'black-yellow': {
+    cell: '#111',
+    filledCell: '#eeff00',
+    border: '#ccc',
+  },
+  'honey': {
+    cell: '#F7A072',
+    filledCell: '#00A7E1',
+    border: '#D9E5D6',
+  },
+};
+
 interface CellThemeContext {
   cellColor: string;
   setCellColor: (color: string) => void;

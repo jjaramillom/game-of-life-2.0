@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 
 import { boardEventsContext } from '../../state/BoardEventsProvider';
 import { matrixStateContext } from '../../state/MatrixStateProvider';
+import { cellThemeContext } from '../../state/CellThemeProvider';
 import Cell from '../Cell/Cell';
 import classes from './Matrix.module.scss';
 
@@ -13,6 +14,7 @@ interface Props {
 const Matrix = ({ rows: rowsNumber, columns: columnsNumber }: Props) => {
   const { setClearing, setFilling } = useContext(boardEventsContext);
   const { setMatrix } = useContext(matrixStateContext);
+  const { cellBorderColor } = useContext(cellThemeContext);
 
   const handleMouseLeave = () => {
     setClearing(false);
@@ -36,7 +38,10 @@ const Matrix = ({ rows: rowsNumber, columns: columnsNumber }: Props) => {
   }, []);
 
   return (
-    <div onMouseLeave={handleMouseLeave} className={classes.matrix}>
+    <div
+      onMouseLeave={handleMouseLeave}
+      className={classes.matrix}
+      style={{ borderColor: cellBorderColor }}>
       {rows}
     </div>
   );
