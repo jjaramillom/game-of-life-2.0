@@ -13,22 +13,14 @@ const ThemeSelector = () => {
     cellBorderColor,
     setCellColor,
     setCellFilledColor,
-    setCellBorderColor,
   } = useContext(cellThemeContext);
 
-  const changeTheme = (
-    cellColor: string,
-    cellFilledColor: string,
-    cellBorderColor: string
-  ) => {
-    console.log('change');
-
+  const changeTheme = (cellColor: string, cellFilledColor: string) => {
     setCellColor(cellColor);
     setCellFilledColor(cellFilledColor);
-    setCellBorderColor(cellBorderColor);
   };
 
-  console.log(Object.values(themeMap))
+  console.log(Object.values(themeMap));
 
   return (
     <Card>
@@ -52,7 +44,7 @@ const ThemeSelector = () => {
                 {Object.values(themeMap).map((o: CellTheme, i: number) => (
                   <div className={classes.icon_wrapper} key={i}>
                     <ThemeSelectorIcon
-                      onClick={() => changeTheme(o.cell, o.filledCell, o.border)}
+                      onClick={() => changeTheme(o.cell, o.filledCell)}
                       innerColor={o.filledCell}
                       outerColor={o.cell}
                       borderColor={o.border}

@@ -15,10 +15,10 @@ const ThemeSelectorIcon = ({ innerColor, outerColor, borderColor, onClick }: Pro
   const style = css`
     border-color: ${borderColor};
     &:before {
-      background-color: ${outerColor};
+      background-color: ${innerColor};
     }
     &:after {
-      background-color: ${innerColor};
+      background-color: ${outerColor};
     }
   `;
 
