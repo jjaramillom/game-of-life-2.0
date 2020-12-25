@@ -18,17 +18,6 @@ export const themeMap = {
   },
 };
 
-export const colors = [
-  '#D9E5D6',
-  '#00A7E1',
-  '#F7A072',
-  '#FF9B42',
-  '#8783D1',
-  '#D1ABAD',
-  '#F4ACB7',
-  '#0a0a0a',
-];
-
 interface CellThemeContext {
   cellColor: string;
   setCellColor: (color: string) => void;

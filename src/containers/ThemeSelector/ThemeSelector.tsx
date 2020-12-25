@@ -13,11 +13,17 @@ const ThemeSelector = () => {
     cellBorderColor,
     setCellColor,
     setCellFilledColor,
+    setCellBorderColor,
   } = useContext(cellThemeContext);
 
-  const changeTheme = (cellColor: string, cellFilledColor: string) => {
+  const changeTheme = (
+    cellColor: string,
+    cellFilledColor: string,
+    cellBorderColor: string
+  ) => {
     setCellColor(cellColor);
     setCellFilledColor(cellFilledColor);
+    setCellBorderColor(cellBorderColor);
   };
 
   console.log(Object.values(themeMap));
@@ -44,7 +50,7 @@ const ThemeSelector = () => {
                 {Object.values(themeMap).map((o: CellTheme, i: number) => (
                   <div className={classes.icon_wrapper} key={i}>
                     <ThemeSelectorIcon
-                      onClick={() => changeTheme(o.cell, o.filledCell)}
+                      onClick={() => changeTheme(o.cell, o.filledCell, o.border)}
                       innerColor={o.filledCell}
                       outerColor={o.cell}
                       borderColor={o.border}

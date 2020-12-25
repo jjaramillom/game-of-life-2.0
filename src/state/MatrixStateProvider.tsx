@@ -11,6 +11,7 @@ interface MatrixStateContext {
   setCellValue: (coordinate: Coordinate, value: boolean) => void;
   getCellValue: (coordinate: Coordinate) => boolean | undefined;
   randomizeMatrix: () => void;
+  clearMatrix: () => void;
   steadyState: boolean;
 }
 
@@ -21,6 +22,7 @@ const matrixStateContext = createContext<MatrixStateContext>({
   setCellValue: (coordinate, value) => {},
   getCellValue: (coordinate) => undefined,
   randomizeMatrix: () => {},
+  clearMatrix: () => {},
   steadyState: false,
 });
 
@@ -70,6 +72,13 @@ const MatrixStateProvider = ({ children }: Props) => {
     setSteadyState(false);
   };
 
+  const clearMatrix = () => {
+    const matrixClone = cloneDeep(matrix);
+    matrixClone.forEach((row) => row.forEach((cell) => (cell.isAlive = false)));
+    setMatrix(matrixClone);
+    setSteadyState(false);
+  };
+
   return (
     <matrixStateContext.Provider
       value={{
@@ -79,6 +88,7 @@ const MatrixStateProvider = ({ children }: Props) => {
         setCellValue,
         getCellValue,
         randomizeMatrix,
+        clearMatrix,
         steadyState,
       }}>
       {children}

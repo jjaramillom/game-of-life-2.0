@@ -7,10 +7,14 @@ import Button from '../../components/UI/Button/Button';
 import classes from './Controls.module.scss';
 
 const Controls = () => {
-  const { increaseCurrentGeneration, setRunning, running, currentGeneration } = useContext(
-    gameStatusContext
-  );
-  const { randomizeMatrix, updateMatrix } = useContext(matrixStateContext);
+  const {
+    increaseCurrentGeneration,
+    resetCurrentGeneration,
+    setRunning,
+    running,
+    currentGeneration,
+  } = useContext(gameStatusContext);
+  const { randomizeMatrix, updateMatrix, clearMatrix } = useContext(matrixStateContext);
   const updateInterval = useRef<NodeJS.Timeout | null>();
 
   const handleNextStep = () => {
@@ -31,6 +35,10 @@ const Controls = () => {
 
   const handleStart = () => setRunning(true);
   const handleStop = () => setRunning(false);
+  const handleReset = () => {
+    resetCurrentGeneration();
+    clearMatrix();
+  };
 
   return (
     <Card>
@@ -71,6 +79,14 @@ const Controls = () => {
             style={{ width: '100%' }}
             onClick={randomizeMatrix}>
             randomize
+          </Button>
+          <Button
+            upperCase
+            size='md'
+            disabled={running}
+            style={{ width: '100%' }}
+            onClick={handleReset}>
+            reset
           </Button>
         </div>
         <div className={[classes.controls_row, classes.generation_label].join(' ')}>
