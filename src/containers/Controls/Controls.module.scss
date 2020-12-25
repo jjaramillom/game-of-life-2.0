@@ -10,10 +10,16 @@
   justify-content: space-between;
 }
 
-.generation_label {
+.label {
   position: relative;
   top: 10px;
-  margin-left: auto;
-  margin-right: 5px;
   width: fit-content;
+  &.speed {
+    margin-left: 5px;
+    margin-right: auto;
+  }
+  &.generation {
+    margin-left: auto;
+    margin-right: 5px;
+  }
 }

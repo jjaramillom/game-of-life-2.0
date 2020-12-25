@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { gameStatusContext } from '../../state/GameStatusProvider';
 import { matrixStateContext } from '../../state/MatrixStateProvider';
+import useInterval from '../../hooks/useInterval';
 import Card from '../../components/UI/Card/Card';
 import Button from '../../components/UI/Button/Button';
+import Slider from '../../components/UI/Slider/Slider';
 import classes from './Controls.module.scss';
 
 const Controls = () => {
+  const [updateSpeed, setUpdateSpeed] = useState(1);
   const {
     increaseCurrentGeneration,
     resetCurrentGeneration,
@@ -15,23 +18,13 @@ const Controls = () => {
     currentGeneration,
   } = useContext(gameStatusContext);
   const { randomizeMatrix, updateMatrix, clearMatrix } = useContext(matrixStateContext);
-  const updateInterval = useRef<NodeJS.Timeout | null>();
 
   const handleNextStep = () => {
     increaseCurrentGeneration();
     updateMatrix(currentGeneration % 10 === 0);
   };
 
-  useEffect(() => {
-    if (running) {
-      updateInterval.current = setInterval(() => handleNextStep(), 500);
-      return () => {
-        if (updateInterval.current) {
-          clearInterval(updateInterval.current);
-        }
-      };
-    }
-  }, [running]);
+  useInterval(handleNextStep, running ? 1000 / updateSpeed : null);
 
   const handleStart = () => setRunning(true);
   const handleStop = () => setRunning(false);
@@ -89,8 +82,16 @@ const Controls = () => {
             reset
           </Button>
         </div>
+        <div className={classes.controls_row}>
+          <Slider min={0} max={10} initialValue={updateSpeed} onChange={setUpdateSpeed} />
+        </div>
         <div className={[classes.controls_row, classes.generation_label].join(' ')}>
-          Current generation: {currentGeneration}
+          <div className={[classes.label, classes.speed].join(' ')}>
+            Current speed: {updateSpeed} gens/sec
+          </div>
+          <div className={[classes.label, classes.generation].join(' ')}>
+            Current generation: {currentGeneration}
+          </div>
         </div>
       </div>
     </Card>

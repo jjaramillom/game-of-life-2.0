@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, useRef } from 'react';
+import React, { createContext, useState } from 'react';
 
 interface GameStatusContext {
   running: boolean;
@@ -24,37 +24,6 @@ const GameStatusProvider = ({ children }: Props) => {
   const [running, setRunning] = useState(false);
   const [currentGeneration, setCurrentGeneration] = useState(0);
 
-  // let gameInterval: NodeJS.Timeout;
-  // const updateInterval = useRef<NodeJS.Timeout | null>();
-
-  // const startGame = () => {
-  // gameInterval = setInterval(() => increaseCurrentGeneration(), 1000);
-  // };
-
-  // const stopGame = () => {
-  // clearInterval(gameInterval);
-  // };
-
-  // useEffect(() => {
-  //   if (running) {
-  //     updateInterval.current = setInterval(() => increaseCurrentGeneration(), 500);
-  //     return () => {
-  //       if (updateInterval.current) {
-  //         clearInterval(updateInterval.current);
-  //       }
-  //     };
-  //   }
-  // }, [running]);
-
-  const handleSetRunning = (running: boolean) => {
-    setRunning(running);
-    // if (running) {
-    //   startGame();
-    // } else {
-    //   stopGame();
-    // }
-  };
-
   const resetCurrentGeneration = () => setCurrentGeneration(0);
   const increaseCurrentGeneration = () => setCurrentGeneration(currentGeneration + 1);
 
@@ -62,7 +31,7 @@ const GameStatusProvider = ({ children }: Props) => {
     <gameStatusContext.Provider
       value={{
         running,
-        setRunning: handleSetRunning,
+        setRunning: setRunning,
         currentGeneration,
         resetCurrentGeneration,
         increaseCurrentGeneration,
