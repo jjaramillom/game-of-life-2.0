@@ -26,7 +26,6 @@ const ThemeSelector = () => {
     setCellBorderColor(cellBorderColor);
   };
 
-  console.log(Object.values(themeMap));
 
   return (
     <Card>

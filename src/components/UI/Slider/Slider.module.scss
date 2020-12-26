@@ -1,8 +1,44 @@
+$height: 10px;
+$width: 15px;
+
 .container {
   width: 100%;
   margin: 5px;
+  margin: 0;
 }
 
 .slider {
+  margin: 6px 0;
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
+  height: $height;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  &:hover {
+    opacity: 1;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: $height + 10px;
+    height: $height + 10px;
+    border: solid transparent;
+    border-radius: 50%;
+    background: #4caf50;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    width: $height + 10px;
+    height: $height + 10px;
+    background: #4caf50;
+    border: solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+  }
 }

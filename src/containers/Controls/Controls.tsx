@@ -83,7 +83,7 @@ const Controls = () => {
           </Button>
         </div>
         <div className={classes.controls_row}>
-          <Slider min={0} max={10} initialValue={updateSpeed} onChange={setUpdateSpeed} />
+          <Slider min={1} max={10} initialValue={updateSpeed} onChange={setUpdateSpeed} />
         </div>
         <div className={[classes.controls_row, classes.generation_label].join(' ')}>
           <div className={[classes.label, classes.speed].join(' ')}>
