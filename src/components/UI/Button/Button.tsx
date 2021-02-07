@@ -1,9 +1,8 @@
 import React, { useState, useContext, useMemo, useEffect } from 'react';
 
-import { uiThemeContext, themes } from '../../../state/UIThemeProvider';
+import { uiThemeContext, themes } from 'state/UIThemeProvider';
 import { hexToRgb } from '../helpers';
 import classes from './Button.module.scss';
-import { colorMap } from '../../../styles/colors';
 type Size = 'sm' | 'md' | 'bg';
 
 interface Props {

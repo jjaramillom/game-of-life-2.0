@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 
-import { gameStatusContext } from '../../state/GameStatusProvider';
-import { matrixStateContext } from '../../state/MatrixStateProvider';
-import useInterval from '../../hooks/useInterval';
-import Card from '../../components/UI/Card/Card';
-import Button from '../../components/UI/Button/Button';
-import Slider from '../../components/UI/Slider/Slider';
+import { gameStatusContext } from 'state/GameStatusProvider';
+import { matrixStateContext } from 'state/MatrixStateProvider';
+import useInterval from 'hooks/useInterval';
+import Card from 'components/UI/Card/Card';
+import Button from 'components/UI/Button/Button';
+import Slider from 'components/UI/Slider/Slider';
 import classes from './Controls.module.scss';
 
 const Controls = () => {

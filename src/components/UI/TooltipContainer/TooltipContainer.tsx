@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
 import classes from './TooltipContainer.module.scss';
-import Backdrop from '../Backdrop/Backdrop';
+import Backdrop from 'components/UI/Backdrop/Backdrop';
 
 type Mode = 'click' | 'hover';
 

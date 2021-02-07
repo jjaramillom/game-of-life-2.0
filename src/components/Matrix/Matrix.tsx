@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 
-import { boardEventsContext } from '../../state/BoardEventsProvider';
-import { matrixStateContext } from '../../state/MatrixStateProvider';
-import { cellThemeContext } from '../../state/CellThemeProvider';
-import Cell from '../Cell/Cell';
+import { boardEventsContext } from 'state/BoardEventsProvider';
+import { matrixStateContext } from 'state/MatrixStateProvider';
+import { cellThemeContext } from 'state/CellThemeProvider';
+import Cell from 'components/Cell/Cell';
 import classes from './Matrix.module.scss';
 
 interface Props {

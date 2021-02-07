@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Board from './containers/Board/Board';
-import Controls from './containers/Controls/Controls';
-import ThemeSelector from './containers/ThemeSelector/ThemeSelector';
-import GameStatusprovider from './state/GameStatusProvider';
-import CellThemeProvider from './state/CellThemeProvider';
-import MatrixStateProvider from './state/MatrixStateProvider';
-import classes from './App.module.scss';
+import Board from 'containers/Board/Board';
+import Controls from 'containers/Controls/Controls';
+import ThemeSelector from 'containers/ThemeSelector/ThemeSelector';
+import GameStatusprovider from 'state/GameStatusProvider';
+import CellThemeProvider from 'state/CellThemeProvider';
+import MatrixStateProvider from 'state/MatrixStateProvider';
+import classes from 'App.module.scss';
 
 function App() {
   return (

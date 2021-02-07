@@ -16,7 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["@emotion/react/types/css-prop"],
-    "typeRoots": ["./@types", "./node_modules/@types"]
+    "typeRoots": ["./@types", "./node_modules/@types"],
+    "baseUrl": "src"
   },
   "include": ["src"],
 }

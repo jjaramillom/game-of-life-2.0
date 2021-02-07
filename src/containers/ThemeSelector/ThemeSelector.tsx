@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 
-import { cellThemeContext, themeMap } from '../../state/CellThemeProvider';
-import { uiThemeContext, themes } from '../../state/UIThemeProvider';
-import Card from '../../components/UI/Card/Card';
-import TooltipContainer from '../../components/UI/TooltipContainer/TooltipContainer';
-import CellThemeSelectorIcon from '../../components/UI/CellThemeSelectorIcon/CellThemeSelectorIcon';
-import UIThemeSelectorIcon from '../../components/UI/UIThemeSelectorIcon/UIThemeSelectorIcon';
+import { cellThemeContext, themeMap } from 'state/CellThemeProvider';
+import { uiThemeContext, themes } from 'state/UIThemeProvider';
+import Card from 'components/UI/Card/Card';
+import TooltipContainer from 'components/UI/TooltipContainer/TooltipContainer';
+import CellThemeSelectorIcon from 'components/UI/CellThemeSelectorIcon/CellThemeSelectorIcon';
+import UIThemeSelectorIcon from 'components/UI/UIThemeSelectorIcon/UIThemeSelectorIcon';
 import classes from './ThemeSelector.module.scss';
 
 const ThemeSelector = () => {
