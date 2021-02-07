@@ -15,9 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["@emotion/react/types/css-prop"],
+    "types": ["@emotion/react/types/css-prop", "jest"],
     "typeRoots": ["./@types", "./node_modules/@types"],
     "baseUrl": "src"
   },
-  "include": ["src"],
+  "include": ["src"]
 }

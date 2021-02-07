@@ -35,6 +35,7 @@ const Matrix = ({ rows: rowsNumber, columns: columnsNumber }: Props) => {
 
   useEffect(() => {
     setMatrix(matrix);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

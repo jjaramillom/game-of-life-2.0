@@ -72,7 +72,7 @@ const Cell = ({ filled: filledInitialState, x, y }: Props) => {
   const cellValueState = getCellValue({ x, y });
 
   useEffect(() => {
-    if (cellValueState !== undefined && cellValueState !== filled) {
+    if (cellValueState !== undefined) {
       setFilled(cellValueState);
     }
   }, [cellValueState]);

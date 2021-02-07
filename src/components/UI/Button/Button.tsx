@@ -71,6 +71,7 @@ const Button: React.FunctionComponent<Props> = ({
       setMainColor(themes[themeIndex].buttons[color].bg);
       setTextColor(themes[themeIndex].buttons[color].text);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [themeIndex]);
 
   const styles = useMemo(
