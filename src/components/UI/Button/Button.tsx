@@ -55,7 +55,7 @@ const Button: React.FunctionComponent<Props> = ({
   const { themeIndex } = useContext(uiThemeContext);
   const [hover, setHover] = useState(false);
   const [mainColor, setMainColor] = useState<string>(
-    color ? themes[themeIndex].buttons[color].bg : themes[themeIndex].mainColor
+    color ? themes[themeIndex].buttons[color].bg : themes[themeIndex].background
   );
   const [textColor, setTextColor] = useState<string>(
     color ? themes[themeIndex].buttons[color].text : themes[themeIndex].textColor
@@ -86,6 +86,7 @@ const Button: React.FunctionComponent<Props> = ({
     <button
       className={[classes.button, disabled ? classes.disabled : ''].join(' ')}
       style={{ ...styles, ...style }}
+      title={disabled ? 'disabled' : ''}
       onClick={() => (disabled ? null : onClick?.())}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}>

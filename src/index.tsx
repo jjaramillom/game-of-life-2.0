@@ -2,16 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+import GameStatusprovider from 'state/GameStatusProvider';
+import CellThemeProvider from 'state/CellThemeProvider';
+import UIThemeProvider from 'state/UIThemeProvider';
+import MatrixStateProvider from 'state/MatrixStateProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GameStatusprovider>
+      <MatrixStateProvider>
+        <CellThemeProvider>
+          <UIThemeProvider>
+            <App />
+          </UIThemeProvider>
+        </CellThemeProvider>
+      </MatrixStateProvider>
+    </GameStatusprovider>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

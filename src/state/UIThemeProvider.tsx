@@ -1,24 +1,41 @@
 import React, { createContext, useState } from 'react';
 
-export const themes = [
+type Theme = {
+  background: string;
+  textColor: string;
+  cards: {
+    background: string;
+    boxShadowColor: string;
+  };
+  buttons: {
+    default: { bg: string; text: string };
+    danger: { bg: string; text: string };
+    success: { bg: string; text: string };
+    warning: { bg: string; text: string };
+  };
+};
+
+export const themes: ReadonlyArray<Theme> = [
   {
-    mainColor: '#EEEEEE',
+    background: '#EEEEEE',
     textColor: '#000',
-    cards: { background: '#EEE', shadow: '#aaa' },
+    cards: { background: '#d4d4d4', boxShadowColor: '#aaa' },
     buttons: {
+      default: { bg: '#eee', text: '#fff' },
       danger: { bg: '#d11128', text: '#fff' },
       success: { bg: '#3ac346', text: '#fff' },
       warning: { bg: '#bec33a', text: '#fff' },
     },
   },
   {
-    mainColor: '#000',
+    background: '#000',
     textColor: '#EEEEEE',
     cards: {
       background: '#444',
-      shadow: '#999',
+      boxShadowColor: '#999',
     },
     buttons: {
+      default: { bg: '#d11128', text: '#fff' },
       danger: { bg: '#d11128', text: '#fff' },
       success: { bg: '#3ac346', text: '#fff' },
       warning: { bg: '#bec33a', text: '#fff' },

@@ -20,7 +20,7 @@ const ThemeSelector = () => {
 
   const { themeIndex, setThemeIndex } = useContext(uiThemeContext);
 
-  const changeTheme = (
+  const changeCellTheme = (
     cellColor: string,
     cellFilledColor: string,
     cellBorderColor: string
@@ -33,17 +33,19 @@ const ThemeSelector = () => {
   return (
     <Card>
       <div className={classes.main}>
-        <div className={classes.theme_option}>
+        <div
+          className={classes.theme_option}
+          style={{ borderColor: themes[themeIndex].textColor }}>
           <div style={{ marginBottom: '5px' }}>Main Theme</div>
 
           <TooltipContainer mode='click'>
-            <UIThemeSelectorIcon color={themes[themeIndex].mainColor} />
+            <UIThemeSelectorIcon color={themes[themeIndex].background} />
             <TooltipContainer.Tooltip>
               <div className={classes.theme_modal}>
                 {themes.map((o, i: number) => (
                   <div className={classes.icon_wrapper} key={i}>
                     <UIThemeSelectorIcon
-                      color={o.mainColor}
+                      color={o.background}
                       onClick={() => setThemeIndex(i)}
                     />
                   </div>
@@ -65,7 +67,7 @@ const ThemeSelector = () => {
                 {Object.values(themeMap).map((o: CellTheme, i: number) => (
                   <div className={classes.icon_wrapper} key={i}>
                     <CellThemeSelectorIcon
-                      onClick={() => changeTheme(o.cell, o.filledCell, o.border)}
+                      onClick={() => changeCellTheme(o.cell, o.filledCell, o.border)}
                       innerColor={o.filledCell}
                       outerColor={o.cell}
                       borderColor={o.border}

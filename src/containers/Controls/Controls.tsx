@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import { gameStatusContext } from 'state/GameStatusProvider';
 import { matrixStateContext } from 'state/MatrixStateProvider';
+import { uiThemeContext, themes } from 'state/UIThemeProvider';
 import useInterval from 'hooks/useInterval';
 import Card from 'components/UI/Card/Card';
 import Button from 'components/UI/Button/Button';
@@ -18,6 +19,7 @@ const Controls = () => {
     currentGeneration,
   } = useContext(gameStatusContext);
   const { randomizeMatrix, updateMatrix, clearMatrix } = useContext(matrixStateContext);
+  const { themeIndex } = useContext(uiThemeContext);
 
   const handleNextStep = () => {
     increaseCurrentGeneration();
@@ -35,7 +37,7 @@ const Controls = () => {
 
   return (
     <Card>
-      <div className={classes.controls_main}>
+      <div className={classes.controls_main} >
         <div className={classes.controls_row}>
           <Button
             upperCase
