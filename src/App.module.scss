@@ -1,10 +1,32 @@
 .app {
-  padding: 0 20px;
+  padding: 20px;
   display: flex;
   flex-direction: row;
 }
 
+.board {
+  order: 1;
+}
+
 .configuration_column {
+  order: 2;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  .app {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .board {
+    order: 2;
+  }
+
+  .configuration_column {
+    flex-direction: row;
+    align-items: center;
+    order: 1;
+  }
 }

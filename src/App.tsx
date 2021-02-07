@@ -14,7 +14,9 @@ function App() {
       <GameStatusprovider>
         <MatrixStateProvider>
           <CellThemeProvider>
-            <Board />
+            <div className={classes.board}>
+              <Board />
+            </div>
             <div className={classes.configuration_column}>
               <Controls />
               <ThemeSelector />

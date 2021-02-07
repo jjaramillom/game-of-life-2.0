@@ -1,6 +1,6 @@
 import React, { useState, useContext, useMemo, useEffect } from 'react';
 
-import { uiThemeContext } from '../../../state/UIThemeProvider';
+import { uiThemeContext, themes } from '../../../state/UIThemeProvider';
 import { hexToRgb } from '../helpers';
 import classes from './Button.module.scss';
 import { colorMap } from '../../../styles/colors';
@@ -19,7 +19,6 @@ interface Props {
 interface ButtonStyleProps {
   size: Size;
   mainColor: string;
-  secondaryColor: string;
   textColor: string;
 }
 
@@ -36,7 +35,6 @@ const stylesMap: StylesMap = {
 const createStyles = ({
   size,
   mainColor,
-  secondaryColor,
   textColor,
 }: ButtonStyleProps): React.CSSProperties => {
   return {
@@ -55,38 +53,35 @@ const Button: React.FunctionComponent<Props> = ({
   style,
   onClick,
 }: Props) => {
-  const { mainColor: mainThemeColor, secondaryColor, textColor: textThemeColor } = useContext(
-    uiThemeContext
-  );
+  const { themeIndex } = useContext(uiThemeContext);
   const [hover, setHover] = useState(false);
   const [mainColor, setMainColor] = useState<string>(
-    color ? colorMap[color].bg : mainThemeColor
+    color ? themes[themeIndex].buttons[color].bg : themes[themeIndex].mainColor
   );
   const [textColor, setTextColor] = useState<string>(
-    color ? colorMap[color].text : textThemeColor
+    color ? themes[themeIndex].buttons[color].text : themes[themeIndex].textColor
   );
 
   const hoverMainColor = useMemo(() => {
-    const { r, g, b } = hexToRgb(color ? colorMap[color].bg : mainThemeColor);
+    const { r, g, b } = hexToRgb(mainColor);
     return `rgba(${r},${g},${b},0.5)`;
-  }, [mainThemeColor, color]);
+  }, [mainColor]);
 
   useEffect(() => {
-    if (!color) {
-      setMainColor(mainThemeColor);
-      setTextColor(textThemeColor);
+    if (color) {
+      setMainColor(themes[themeIndex].buttons[color].bg);
+      setTextColor(themes[themeIndex].buttons[color].text);
     }
-  }, [mainThemeColor, textThemeColor]);
+  }, [themeIndex]);
 
   const styles = useMemo(
     () =>
       createStyles({
         size,
         mainColor: hover ? hoverMainColor : mainColor,
-        secondaryColor,
         textColor,
       }),
-    [size, mainColor, secondaryColor, textColor, hoverMainColor, hover]
+    [size, mainColor, textColor, hoverMainColor, hover]
   );
   return (
     <button

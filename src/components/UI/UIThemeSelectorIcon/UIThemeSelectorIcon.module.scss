@@ -1,0 +1,13 @@
+$icon-radius: 20px;
+$border-width: 3px;
+$inner-width: 33px;
+
+.theme_selector {
+  position: relative;
+  width: $icon-radius;
+  height: $icon-radius;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: red;
+  overflow: hidden;
+}

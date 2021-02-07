@@ -1,21 +1,39 @@
 import React, { createContext, useState } from 'react';
 
+export const themes = [
+  {
+    mainColor: '#EEEEEE',
+    textColor: '#000',
+    cards: { background: '#EEE', shadow: '#aaa' },
+    buttons: {
+      danger: { bg: '#d11128', text: '#fff' },
+      success: { bg: '#3ac346', text: '#fff' },
+      warning: { bg: '#bec33a', text: '#fff' },
+    },
+  },
+  {
+    mainColor: '#000',
+    textColor: '#EEEEEE',
+    cards: {
+      background: '#444',
+      shadow: '#999',
+    },
+    buttons: {
+      danger: { bg: '#d11128', text: '#fff' },
+      success: { bg: '#3ac346', text: '#fff' },
+      warning: { bg: '#bec33a', text: '#fff' },
+    },
+  },
+];
+
 interface UIThemeContext {
-  mainColor: string;
-  setMainColor: (color: string) => void;
-  secondaryColor: string;
-  setSecondaryColor: (color: string) => void;
-  textColor: string;
-  setTextColor: (color: string) => void;
+  themeIndex: number;
+  setThemeIndex: (index: number) => void;
 }
 
 const uiThemeContext = createContext<UIThemeContext>({
-  mainColor: '#f1f21f',
-  setMainColor: (color) => {},
-  secondaryColor: '#f1f21f',
-  setSecondaryColor: (color) => {},
-  textColor: '#000000',
-  setTextColor: (color: string) => {},
+  themeIndex: 0,
+  setThemeIndex: (index) => {},
 });
 
 type Props = {
@@ -23,19 +41,13 @@ type Props = {
 };
 
 const UIThemeProvider = ({ children }: Props) => {
-  const [mainColor, setMainColor] = useState('#18ab');
-  const [secondaryColor, setSecondaryColor] = useState('#afcc');
-  const [textColor, setTextColor] = useState('#afcc');
+  const [themeIndex, setThemeIndex] = useState(0);
 
   return (
     <uiThemeContext.Provider
       value={{
-        mainColor,
-        setMainColor,
-        secondaryColor,
-        setSecondaryColor,
-        textColor,
-        setTextColor,
+        themeIndex,
+        setThemeIndex,
       }}>
       {children}
     </uiThemeContext.Provider>

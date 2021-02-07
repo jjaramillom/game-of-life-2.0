@@ -1,6 +1,7 @@
 .main {
   display: flex;
   flex-direction: row;
+  width: max-content;
 }
 
 .theme_option {
@@ -22,4 +23,14 @@
 
 .icon_wrapper {
   padding: 5px;
+}
+
+.ui_theme_text {
+  margin: 5px 0 0 0;
+  padding: 3px;
+  border-radius: 2px;
+  text-align: center;
+  &.light {
+    background-color: red;
+  }
 }

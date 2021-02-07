@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/react';
 
-import classes from './ThemeSelectorIcon.module.scss';
+import classes from './CellThemeSelectorIcon.module.scss';
 
 interface Props {
   innerColor: string;
@@ -11,7 +11,7 @@ interface Props {
   onClick?: () => void;
 }
 
-const ThemeSelectorIcon = ({ innerColor, outerColor, borderColor, onClick }: Props) => {
+const CellThemeSelectorIcon = ({ innerColor, outerColor, borderColor, onClick }: Props) => {
   const style = css`
     border-color: ${borderColor};
     &:before {
@@ -25,4 +25,4 @@ const ThemeSelectorIcon = ({ innerColor, outerColor, borderColor, onClick }: Pro
   return <div onClick={onClick} className={classes.theme_selector} css={style} />;
 };
 
-export default ThemeSelectorIcon;
+export default CellThemeSelectorIcon;
