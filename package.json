@@ -1,6 +1,7 @@
 {
   "name": "game-of-life-2",
   "version": "0.1.0",
+  "homepage": "http://jjaramillom.github.io/game-of-life-2.0",
   "private": true,
   "dependencies": {
     "@emotion/core": "^11.0.0",
@@ -26,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +54,7 @@
     "@types/jest": "^26.0.20",
     "@types/lodash": "^4.14.165",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
-    "enzyme": "^3.11.0"
+    "enzyme": "^3.11.0",
+    "gh-pages": "^3.1.0"
   }
 }
